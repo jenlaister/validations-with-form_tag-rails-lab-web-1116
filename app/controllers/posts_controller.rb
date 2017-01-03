@@ -9,11 +9,13 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-
-    @post.update(post_params)
-
+    if @post.update(post_params)
     redirect_to post_path(@post)
+  else
+    render 'edit'
   end
+end
+
 
   private
 
@@ -21,3 +23,9 @@ class PostsController < ApplicationController
     params.permit(:title, :category, :content)
   end
 end
+
+
+# Create show, new, edit, create, and update routes for both models.
+# Define controller actions for show, new, and edit.
+# Define the "valid path" for the create and update controller actions.
+# Define the "invalid path" for the create and update controller actions.
